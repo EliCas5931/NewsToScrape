@@ -74,6 +74,11 @@ app.get("/scrape", function(req, res) {
     res.send("Scrape Completed!");
 });
 
-app.listen(3000, function() {
+app.get("/", function(req,res) {
+    res.json(path.join(__dirname, "public/index.html"));
+});
+
+var PORT = process.env.PORT || 3000
+app.listen(PORT, function() {
     console.log("Server listening on: http://localhost:3000");
 })
