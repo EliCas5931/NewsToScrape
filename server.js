@@ -13,12 +13,12 @@ var app = express();
 app.use(express.static("public"));
 
 // Database Config
-var databaseUrl = "scraper";
-var collections = ["scrapedData"];
+var databaseUrl = "newsDB";
+var collections = ["newsData"];
 
 // Connect mongojs
 var db = mongojs(databaseUrl, collections);
-db.onc("error", function(error) {
+db.on("error", function(error) {
     console.log("Database Error:", error);
 });
 
@@ -28,7 +28,17 @@ app.get("/", function(req, res) {
 });
 
 app.get("/all", function(req, res) {
-    db.scrapedData.find({}, function(error, found) {
+    db.newsData.find({}, function(error, found) {
+        if (error) {
+            console.log(error);
+        } else {
+            res.json(found);
+        }
+    });
+});
+
+app.get("/title", function(req, res) {
+    db.newsData.find().sort({ title: 1 }, function(error, found) {
         if (error) {
             console.log(error);
         } else {
@@ -47,7 +57,7 @@ app.get("/scrape", function(req, res) {
             // var image = $(element)
 
             if (title && link) {
-                db.scrapedData.insert({
+                db.newsData.insert({
                     title: title,
                     link: link
                 },

@@ -1,18 +1,12 @@
 
-function displayResults(scrapedData) {
-    $("tbody").empty();
-
-    scrapedData.forEach(function(results) {
-        var tr = $("<tr>").append(
-            $("<td>").text(results.title),
-            $("<td>").text(results.link)
-        );
-        $("tbody").append(tr);
-    });
-}
 
 $.getJSON("/all", function(data) {
-    displayResults(data);
+    console.log(data);
+    for (var i = 0; i < data.length; i++) {
+        $("#results").append(
+            "<tr><td>" + data[i].title + "</td>" +
+            "<td>" + data[i].link + "</td></tr>");
+    }
 });
 
 $("#scrape").on("click", function() {
@@ -20,5 +14,5 @@ $("#scrape").on("click", function() {
 });
 
 $("#clear").on("click", function() {
-    
+
 })
