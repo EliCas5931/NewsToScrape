@@ -1,6 +1,6 @@
 
 
-$.get("/all", function (data) {
+$.getJSON("/all", function (data) {
     console.log(data);
     for (var i = 0; i < data.length; i++) {
         $("#results").append(
@@ -10,7 +10,7 @@ $.get("/all", function (data) {
 });
 
 $("#scrape").on("click", function () {
-    $.get("/scrape", function (data) {
+    $.getJSON("/scrape", function (data) {
         for (var i = 0; i < data.length; i++) {
             $("#results").append(
                 "<tr><td>" + data[i].title + "</td>" +
