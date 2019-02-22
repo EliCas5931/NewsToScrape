@@ -17,8 +17,8 @@ var databaseUrl = "newsDB";
 var collections = ["newsData"];
 
 // MONGODB_URI
-// var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/newsDB"
-// mongoose.connect(MONGODB_URI);
+var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/newsDB"
+mongoose.connect(MONGODB_URI);
 
 // Connect mongojs
 var db = mongojs(databaseUrl, collections);
