@@ -10,7 +10,7 @@ $.get("/all", function (data) {
 });
 
 $("#scrape").on("click", function () {
-    $.getJSON("/scrape", function (data) {
+    $.get("/scrape", function (data) {
         for (var i = 0; i < data.length; i++) {
             $("#results").append(
                 "<tr><td>" + data[i].title + "</td>" +
