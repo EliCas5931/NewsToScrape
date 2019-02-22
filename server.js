@@ -21,7 +21,7 @@ var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/newsDB"
 // mongoose.connect(MONGODB_URI);
 
 // Connect mongojs
-var db = mongojs(databaseUrl, collections);
+var db = mongojs(MONGODB_URI, collections);
 db.on("error", function(error) {
     console.log("Database Error:", error);
 });
